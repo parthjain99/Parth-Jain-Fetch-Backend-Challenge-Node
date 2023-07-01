@@ -20,7 +20,7 @@ git clone https://github.com/parthjain99/Parth-Jain-Fetch-Backend-Challenge-Node
 
 2. Build the Docker image by running the following command:
     ```
-    docker build. -t node-fetch-backend
+    docker build . -t node-fetch-backend
     ```
 
 4. Run the Docker container with the following command:
