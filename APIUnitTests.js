@@ -187,10 +187,10 @@ it ('Tests if the API correctly calculates points for a receipt with a retailer 
     .expect('jsonTypes', {'points': 14});
 });
 });
-it ('Tests if the API correctly handles a receipt with an empty retailer name.', function () {
+it ('Tests if the API correctly handles a receipt with an empty purchase Date.', function () {
     const receipt = {
-        retailer: '',
-        purchaseDate: '2022-09-15',
+        retailer: 'Grocery Shop',
+        purchaseDate: '',
         purchaseTime: '09:30',
         items: [
           {
@@ -361,11 +361,11 @@ it ('Tests if the API correctly handles a receipt with an invalid time format.',
     .expect('status', 400)
     .expect('jsonTypes',  {'error': "Invalid purchase time"})
 });
-it ('Tests if the API correctly handles a receipt with an empty retailer name.', function () {
+it ('Tests if the API correctly handles a receipt with an empty purchaseTime.', function () {
     const receipt = {
-        retailer: '',
+        retailer: 'Grocery Store',
         purchaseDate: '2022-09-15',
-        purchaseTime: '09:30',
+        purchaseTime: '',
         items: [
           {
             shortDescription: 'Item 1',
