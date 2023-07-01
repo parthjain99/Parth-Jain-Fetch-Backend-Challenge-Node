@@ -124,7 +124,7 @@ it ('Tests if the API returns invalid items error for a receipt with no items.',
   return frisby
     .post('http://localhost:5001/receipts/process', receipt)
     .expect('status', 400)
-    .expect('jsonTypes',  {'error': "invalid items"})
+    .expect('jsonTypes',  {'error': "Invalid item description or price"})
 });
 it ('Tests if the API returns the correct number of points for a receipt with a total that is a multiple of 0.25.', function () {
     const receipt = {
@@ -321,7 +321,7 @@ it ('Receipt with non-numeric price', function () {
   return frisby
     .post('http://localhost:5001/receipts/process', receipt)
     .expect('status', 400)
-    .expect('jsonTypes',  {'error': "invalid items"})
+    .expect('jsonTypes',  {'error': "Invalid item description or price"})
 });
 it ('Tests if the API correctly handles a receipt with an invalid date format.', function () {
     const receipt = {
@@ -340,7 +340,7 @@ it ('Tests if the API correctly handles a receipt with an invalid date format.',
   return frisby
     .post('http://localhost:5001/receipts/process', receipt)
     .expect('status', 400)
-    .expect('jsonTypes',  {'error': "invalid purchase date"})
+    .expect('jsonTypes',  {'error': "Invalid purchase date"})
 });
 it ('Tests if the API correctly handles a receipt with an invalid time format.', function () {
     const receipt = {
@@ -359,7 +359,7 @@ it ('Tests if the API correctly handles a receipt with an invalid time format.',
   return frisby
     .post('http://localhost:5001/receipts/process', receipt)
     .expect('status', 400)
-    .expect('jsonTypes',  {'error': "invalid purchase time"})
+    .expect('jsonTypes',  {'error': "Invalid purchase time"})
 });
 it ('Tests if the API correctly handles a receipt with an empty retailer name.', function () {
     const receipt = {
@@ -401,7 +401,7 @@ it ('Tests if the API correctly validates a retailer name with leading whitespac
   return frisby
     .post('http://localhost:5001/receipts/process', receipt)
     .expect('status', 400)
-    .expect('jsonTypes',  {'error': 'invalid retailer name'})
+    .expect('jsonTypes',  {'error': 'Invalid retailer name'})
 });
 it ('Tests if the API correctly validates a valid total.', function () {
     const receipt = {
@@ -424,7 +424,7 @@ it ('Tests if the API correctly validates a valid total.', function () {
   return frisby
     .post('http://localhost:5001/receipts/process', receipt)
     .expect('status', 400)
-    .expect('jsonTypes',  {'error': 'invalid total'})
+    .expect('jsonTypes',  {'error': 'Invalid total amount'})
 });
 it ('Tests if the API correctly validates not existing purchase date', function () {
     const receipt = {
@@ -447,7 +447,7 @@ it ('Tests if the API correctly validates not existing purchase date', function 
   return frisby
     .post('http://localhost:5001/receipts/process', receipt)
     .expect('status', 400)
-    .expect('jsonTypes',  {'error': 'invalid purchase date'})
+    .expect('jsonTypes',  {'error': 'Invalid purchase date'})
 });
 it ('Tests if the API correctly calculates the points when the trimmed length of the item description is a multiple of 3.', function () {
     const receipt = {
@@ -491,6 +491,6 @@ it ('Tests if the API correctly sends 404 when invalid short description is sent
   return frisby
     .post('http://localhost:5001/receipts/process', receipt)
     .expect('status', 400)
-    .expect('jsonTypes',  {'error': 'invalid items'})
+    .expect('jsonTypes',  {'error': 'Invalid item description or price'})
 });
 });
