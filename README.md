@@ -12,7 +12,7 @@ This repository contains the backend code for the Fetch Backend Challenge implem
 
 2. Build the Docker image by running the following command:
     ```
-    docker build . -t node-fetch-backend
+    docker build. -t node-fetch-backend
     ```
 
 3. Run the Docker container with the following command:
@@ -26,12 +26,16 @@ This repository contains the backend code for the Fetch Backend Challenge implem
     ```
 
 ### Testing
-1. Run unit tests with the following command:
+1. Install frisby
+    ```
+    npm install frisby
+    ```
+2. Run unit tests with the following command:
     ```
     npm run test
     ```
 
-2. To test the "POST" request for a receipt, you can use cURL with the following command:
+3. To test the "POST" request for a receipt, you can use cURL with the following command:
     ```
     curl -H 'Content-Type: application/json' \
             -d '{
@@ -48,7 +52,7 @@ This repository contains the backend code for the Fetch Backend Challenge implem
           http://localhost:5001/receipts/process
     ```
 
-3. To get points for a specific ID, use the following cURL command:
+4. To get points for a specific ID, use the following cURL command:
     ```
     curl  http://localhost:5001/receipts/[id]/points
     ```
