@@ -1,8 +1,16 @@
 const asynchandler = require('express-async-handler');
 const processReceipt = require('./processRecipt');
-const validateReceipt = require('./validateReciept.js');
-let data_dictionary = {'7fb1377b-b223-49d9-a31a-5a02701dd310':10}; // id of the recipt is mapped to the the Numeber of Points for that Reciept
+const receiptValidator = require('./receiptValidator.js');
+let dataDictionary = {}; // id of the recipt is mapped to the the Numeber of Points for that Reciept
 const uuidv4  = require("uuid/v4");
+
+/**
+* This script contains two controller functions: processReceipts and getPoints.
+* processReceipts handles the processing of a receipt, 
+* validates its fields, calculates the receipt points based on certain criteria, 
+* and stores the points in a data dictionary.
+* getPoints retrieves the points associated with a receipt ID from the data dictionary.
+*/
 
 //@desc create a Receipts
 // calculate the Recipt points.
@@ -14,17 +22,17 @@ const processReceipts = asynchandler(async (req, res)=>{
         res.status(400).json({"error":'All fields are required'});
         return;
     }
-    let [validReciept, error] = validateReceipt.validateall(retailer, purchaseDate, purchaseTime, items, total)
+    let [validReciept, error] = receiptValidator.validateReceipt(retailer, purchaseDate, purchaseTime, items, total)
     if(!validReciept){
         res.status(400).json({"error":error});
         return;
     }
     let receiptPoint = processReceipt.countTotalAmount(retailer, purchaseDate, purchaseTime, items, total)
     let id = uuidv4()
-    while(data_dictionary[id]){
+    while(dataDictionary[id]){
         id = uuidv4()
     };
-    data_dictionary[id] = receiptPoint;
+    dataDictionary[id] = receiptPoint;
     res.status(201).json({"id":id});
     return;
 });
@@ -34,12 +42,12 @@ const processReceipts = asynchandler(async (req, res)=>{
 //@access public
 const getPoints = asynchandler(async (req, res)=>{
     // const contact = await Contact.findById(req.params.id);
-    if(!data_dictionary[req.params.id]){
+    if(!dataDictionary[req.params.id]){
         res.status(404).json('No receipt found for that id');
         // throw new Error("Contact Not Found");
     }
     else{
-        res.status(200).json({"points":data_dictionary[req.params.id]})
+        res.status(200).json({"points":dataDictionary[req.params.id]})
     };
     return;
 });

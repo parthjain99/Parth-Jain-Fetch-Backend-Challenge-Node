@@ -1,3 +1,6 @@
+//This file contains unit tests for testing the functionality and 
+//behavior of the API endpoints.
+
 const frisby = require('frisby');
 const Joi = frisby.Joi; // Frisby exports Joi for convenience on type assersions
 // const app = require('./server');

@@ -1,4 +1,17 @@
-//Function to add One point for every alphanumeric character in the retailer name.
+/** This script contains several helper functions that are used to calculate different 
+* aspects of the receipt points.Each function performs a specific calculation based 
+* on certain conditions or criteria defined in the requirements.The countTotalAmount
+*  function utilizes these helper functions to calculate the total receipt points 
+* based on the provided retailer, purchase date, purchase time, items, and total.
+*/
+
+/**
+ * Calculates the number of points to be added based on the alphanumeric 
+ * characters in the retailer name.
+ *
+ * @param {string} retailerName - The retailer name.
+ * @returns {number} The number of points.
+ */
 function addRetailerName(retailerName) {
     let count = 0;
     for (let i = 0; i < retailerName.length; i++) {
@@ -9,8 +22,13 @@ function addRetailerName(retailerName) {
     return count;
   };
   
-//Function to add 50 points if the total is a round dollar amount with no cents.
-function addRoundDollarTotal(total) {
+/**
+ * Checks if the total amount is a round dollar amount without any cents.
+ * If it is, adds 50 points; otherwise, adds 0 points.
+ *
+ * @param {string} total - The total amount on the receipt.
+ * @returns {number} The number of points.
+ */function addRoundDollarTotal(total) {
     let flag = false;
     if (/^\s*\d+(\.0+)?\s*$/.test(total)) {
        flag = true
@@ -19,7 +37,13 @@ function addRoundDollarTotal(total) {
   };
   
   
-//Function to add 25 points if the total is a multiple of 0.25.
+/**
+ * Checks if the total amount is a multiple of 0.25.
+ * If it is, adds 25 points; otherwise, adds 0 points.
+ *
+ * @param {string} total - The total amount on the receipt.
+ * @returns {number} The number of points.
+ */
 function addMultiple025Total(total) {
     let flag = false;
     if (/^\d+(\.0+|\.25(0+)?|\.5(0+)?|\.75(0+)?)?$/.test(total)) {
@@ -28,14 +52,23 @@ function addMultiple025Total(total) {
     return flag?25:0
   };
  
-//Function to add 5 points for every two items on the receipt.
+/**
+ * Calculates the number of pairs of items on the receipt and adds 5 points for each pair.
+ *
+ * @param {Array} items - The array of items on the receipt.
+ * @returns {number} The number of points.
+ */
 function addPairItems(items) {
     return Math.floor(items.length/2)*5
 };
 
-//Function to add points if the trimmed length of the item description is a multiple of 3, 
-//multiply the price by 0.2 and round up to the nearest integer. 
-//The result is the number of points earned.
+/**
+ * Calculates the number of points to be added based on the trimmed length of each 
+ * item description.If the trimmed length is a multiple of 3, multiplies the price 
+ * by 0.2, rounds up to the nearest integer, and adds to the total points.
+ * @param {Array} items - The array of items on the receipt.
+ * @returns {number} The number of points.
+ */
 function addItemDescription(items) {
     let sum = 0;
     items.forEach(myFunction);
@@ -51,14 +84,26 @@ function addItemDescription(items) {
     return sum
 };
 
-//Function to add 6 points if the day in the purchase date is odd.
+/**
+ * Checks if the day in the purchase date is odd.
+ * If it is, adds 6 points; otherwise, adds 0 points.
+ *
+ * @param {string} purchaseDate - The purchase date (YYYY-MM-DD).
+ * @returns {number} The number of points.
+ */
 function addOddDate(purchaseDate) {
     const dateObj = new Date(purchaseDate + " " + "00:00:00");
     const curDay = dateObj.getDate(); // Extract the day component from the Date object
     return (curDay % 2 === 1)?6:0
 };
 
-//Function to add 10 points if the time of purchase is after 2:00pm and before 4:00pm.
+/**
+ * Checks if the purchase time is between 2:00 PM and 4:00 PM.
+ * If it is, adds 10 points; otherwise, adds 0 points.
+ *
+ * @param {string} purchaseTime - The purchase time (HH:MM).
+ * @returns {number} The number of points.
+ */
 function addPurchaseTime(purchaseTime) {
     const initialDate = '01/01/2011'
     const dateObj = Date.parse(initialDate + " " + purchaseTime);
@@ -67,6 +112,16 @@ function addPurchaseTime(purchaseTime) {
     return (time2<dateObj && dateObj<time4)?10:0
 };
 
+
+/**
+ * Count the total amount of receipt points.
+ * @param {string} retailer - Retailer name.
+ * @param {string} purchaseDate - Purchase date in the format 'YYYY-MM-DD'.
+ * @param {string} purchaseTime - Purchase time in the format 'HH:MM'.
+ * @param {Array} items - Array of purchased items.
+ * @param {number} total - Total purchase amount.
+ * @returns {number} Total receipt points.
+ */
 function countTotalAmount(retailer, purchaseDate, purchaseTime, items, total){
     let reciptPoint = 0;
     reciptPoint += addRetailerName(retailer);

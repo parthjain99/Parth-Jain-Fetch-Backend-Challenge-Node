@@ -1,14 +1,35 @@
-//Function to validate retailer name.
+/** 
+* This script contains validation functions to check the validity of different 
+* fields in the receipt.The functions validate the retailer name, total amount, 
+* item descriptions, purchase date, and purchase time.The validateall function 
+* combines these individual validations and returns a validation result and an 
+* error message.
+*/
+
+/**
+ * Validate the retailer name.
+ * @param {string} retailerName - Retailer name.
+ * @returns {boolean} True if retailer name is valid, false otherwise.
+ */
 function validateRetailerName(retailerName) {
     return /^\S+/.test(retailerName);
   }
 
-//Function to validate total
+/**
+ * Validate the total amount.
+ * @param {number} total - Total purchase amount.
+ * @returns {boolean} True if total amount is valid, false otherwise.
+ */
 function validateTotal(total) {
     return /^\d+\.\d{2}$/.test(total);
   };
  
-//Function to validate items
+
+/**
+ * Validate the item description and price.
+ * @param {Array} items - Array of purchased items.
+ * @returns {boolean} True if item description and price are valid, false otherwise.
+ */
 function validateItemDescription(items) {
     if (items.length < 1){
         return false;
@@ -28,7 +49,11 @@ function validateItemDescription(items) {
     return true;
 };
 
-//Function to validate date
+/**
+ * Validate the date format.
+ * @param {string} dateString - Date string in the format 'YYYY-MM-DD'.
+ * @returns {boolean} True if date format is valid, false otherwise.
+ */
 function validateDate(dateString) {
     // First check for the pattern
     let regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
@@ -63,29 +88,38 @@ function validateDate(dateString) {
 }
 
 
-//Function to validate time
+/**
+ * Validate the time format.
+ * @param {string} timeString - Time string in the format 'HH:MM'.
+ * @returns {boolean} True if time format is valid, false otherwise.
+ */
 function validatePurchaseTime(purchaseTime) {
     const pattern = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/
     return pattern.test(purchaseTime);
 };
 
-function validateall(retailer, purchaseDate, purchaseTime, items, total){
+/**
+ * Validate the entire receipt.
+ * @param {Object} receipt - Receipt object to be validated.
+ * @returns {Array} Array containing the validation result (true or false) and an error message (null if valid).
+ */
+function validateReceipt(retailer, purchaseDate, purchaseTime, items, total){
     if(!validateRetailerName(retailer)){
-        return [false, "invalid retailer name"];
+        return [false, "Invalid retailer name"];
     }
     if (!validateTotal(total)){
-        return [false, "invalid total"];
+        return [false, "Invalid total amount"];
     }
     if (!validateItemDescription(items)){
-        return [false, "invalid items"];
+        return [false, "Invalid item description or price"];
     }   
     if (!validateDate(purchaseDate)){
-        return [false, "invalid purchase date"];
+        return [false, "Invalid purchase date"];
     }
     if (!validatePurchaseTime(purchaseTime)){
-        return [false, "invalid purchase time"];
+        return [false, "Invalid purchase time"];
     }
-    return [true, ""];
+    return [true, null];
 }
 
-module.exports = {validateall};
+module.exports = {validateReceipt};
