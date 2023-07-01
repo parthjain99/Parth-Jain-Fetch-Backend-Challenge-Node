@@ -7,20 +7,28 @@ This repository contains the backend code for the Fetch Backend Challenge implem
 ### Set Up
 1. Install Docker by following the instructions in the official Docker documentation: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/).
 
+2. Clone repository
+```
+git clone https://github.com/parthjain99/Fetch-Backend-Challenge-Node.git
+```
+
 ### Starting the server
 1. Navigate to the directory where the Dockerfile is located.
+```
+cd
+```
 
-2. Build the Docker image by running the following command:
+3. Build the Docker image by running the following command:
     ```
     docker build. -t node-fetch-backend
     ```
 
-3. Run the Docker container with the following command:
+4. Run the Docker container with the following command:
     ```
     docker run -p 5001:5001 -d node-fetch-backend
     ```
 
-4. The server should now be running and accessible on port 5001. You can access it using the following URL:
+5. The server should now be running and accessible on port 5001. You can access it using the following URL:
     ```
     http://localhost:5001/recipts
     ```
