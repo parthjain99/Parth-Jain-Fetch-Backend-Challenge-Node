@@ -15,7 +15,7 @@ git clone https://github.com/parthjain99/Fetch-Backend-Challenge-Node.git
 ### Starting the server
 1. Navigate to the directory where the Dockerfile is located.
 ```
-cd
+cd Parth-jain-Fetch-Backend-Challenge-Node
 ```
 
 3. Build the Docker image by running the following command:
