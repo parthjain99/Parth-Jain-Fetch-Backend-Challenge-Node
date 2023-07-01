@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5001;
 app.use(express.json());
 app.use('/receipts', require('./routes/receiptRoute.js'));
 app.use(require('./middleware/errorHandler.js'))
-app.listen(port, () => {
+app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
 })
 
