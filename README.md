@@ -3,7 +3,7 @@
 This repository contains the backend code for the Fetch Backend Challenge implemented in Node.js.
 
 ## Using Docker
-### Note: Please see The below commands for Unix/macOS environment 
+### Note: Please see The below commands for Linux/macOS environment 
 ### Set Up
 1. Install Docker by following the instructions in the official Docker documentation: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/).
 
