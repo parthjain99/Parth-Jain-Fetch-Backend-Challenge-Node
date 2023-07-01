@@ -471,7 +471,7 @@ it ('Tests if the API correctly calculates the points when the trimmed length of
     .expect('jsonTypes', {'points': 99});
 });
 });
-it ('Tests if the API correctly calculates the points when the trimmed length of the item description is a multiple of 3.', function () {
+it ('Tests if the API correctly sends 404 when invalid short description is sent', function () {
     const receipt = {
         retailer: 'Electronics Store',
         purchaseDate: '2022-09-05',
