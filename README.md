@@ -3,7 +3,7 @@
 This repository contains the backend code for the Fetch Backend Challenge implemented in Node.js.
 
 ## Using Docker
-### Note: Please see The below commands for Linux/macOS environment 
+### Note:The below commands are for Linux/macOS environment 
 ### Set Up
 1. Install Docker by following the instructions in the official Docker documentation: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/).
 
@@ -20,7 +20,7 @@ git clone https://github.com/parthjain99/Parth-Jain-Fetch-Backend-Challenge-Node
 
 2. Build the Docker image by running the following command:
     ```
-    docker build. -t node-fetch-backend
+    docker build . -t node-fetch-backend
     ```
 
 4. Run the Docker container with the following command:
