@@ -75,3 +75,33 @@ git clone https://github.com/parthjain99/Parth-Jain-Fetch-Backend-Challenge-Node
     ```
     docker kill [container-id]
     ```
+### What Each Script does.
+
+1. controller/pointController.js:
+   - This script contains two controller functions: `processReceipts` and `getPoints`.
+   - `processReceipts` handles the processing of a receipt, validates its fields, calculates the receipt points based on certain criteria, and stores the points in a data dictionary.
+   - `getPoints` retrieves the points associated with a receipt ID from the data dictionary.
+
+2. controller/processReceipt.js:
+   - This script contains several helper functions that are used to calculate different aspects of the receipt points.
+   - Each function performs a specific calculation based on certain conditions or criteria defined in the requirements.
+   - The `countTotalAmount` function utilizes these helper functions to calculate the total receipt points based on the provided retailer, purchase date, purchase time, items, and total.
+
+3. controller/validateReceipt.js:
+   - This script contains validation functions to check the validity of different fields in the receipt.
+   - The functions validate the retailer name, total amount, item descriptions, purchase date, and purchase time.
+   - The `validateall` function combines these individual validations and returns a validation result and an error message.
+
+4. receiptRoute.js:
+   - This script defines the routes for processing a receipt and retrieving the receipt points.
+   - It uses the `processReceipts` and `getPoints` functions from the pointController.js script as route handlers.
+
+5. server.js:
+   - This script sets up an Express server and listens on a specified port.
+   - It imports the receiptRoute.js script to handle the /receipts route.
+   - It uses the express.json middleware for parsing incoming JSON requests.
+   - It includes a basic error handling middleware.
+
+6. APIUnitTest.js
+    -This script contains unit tests for testing the functionality and behavior of the API endpoints using the Frisby library.It performs 20 tests.
+
