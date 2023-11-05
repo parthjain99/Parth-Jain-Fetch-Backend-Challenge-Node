@@ -41,10 +41,8 @@ const processReceipts = asynchandler(async (req, res)=>{
 //@route get/api/contacts/:id
 //@access public
 const getPoints = asynchandler(async (req, res)=>{
-    // const contact = await Contact.findById(req.params.id);
     if(!dataDictionary[req.params.id]){
         res.status(404).json('No receipt found for that id');
-        // throw new Error("Contact Not Found");
     }
     else{
         res.status(200).json({"points":dataDictionary[req.params.id]})
